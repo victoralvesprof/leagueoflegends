@@ -1,28 +1,27 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { AppModule } from './app.module';
 
-describe('AppComponent', () => {
+describe(`AppComponent`, () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent, NxWelcomeComponent],
+      imports: [AppModule],
     }).compileComponents();
-  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome leagueoflegends'
-    );
   });
 
-  it(`should have as title 'leagueoflegends'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('leagueoflegends');
+  it(`should be created`, () => {
+    expect(component).toBeTruthy();
+  });
+
+  it(`should have as title leagueoflegends`, () => {
+    expect(component.title).toBe('leagueoflegends');
   });
 });
